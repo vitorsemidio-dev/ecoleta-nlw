@@ -6,9 +6,10 @@ class ItemController {
   async index(req: Request, res: Response) {
     const items = await knex('items').select('*');
 
-    const serializedItems = items.map(({ title, image }) => {
+    const serializedItems = items.map(({ id, title, image }) => {
       return {
-        title: title,
+        id,
+        title,
         image_url: `http://localhost:3333/uploads/${image}`,
       }
     });
