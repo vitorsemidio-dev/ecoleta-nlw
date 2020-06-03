@@ -17,7 +17,7 @@ class PointController {
 
     console.log(req.body);
 
-    await knex('points').insert({
+    const [ point_id, ] = await knex('points').insert({
       image: 'image-fake',
       name,
       email,
@@ -27,6 +27,15 @@ class PointController {
       city,
       uf,
     });
+
+    const pointItems = items.map((item_id: number) => {
+      return {
+        item_id,
+        point_id,
+      }
+    })
+
+    await knex('point_item').insert(pointItems);
 
     return res.json({
       ok: true,
