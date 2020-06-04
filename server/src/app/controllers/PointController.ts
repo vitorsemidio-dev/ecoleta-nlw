@@ -17,29 +17,39 @@ class PointController {
 
     const trx = await knex.transaction();
 
-    const [ point_id, ] = await trx('points').insert({
-      image: 'image-fake',
-      name,
-      email,
-      whatsapp,
-      latitude,
-      longitude,
-      city,
-      uf,
-    });
+    try {  
+      const [ point_id, ] = await trx('points').insert({
+        image: 'image-fake',
+        name,
+        email,
+        whatsapp,
+        latitude,
+        longitude,
+        city,
+        uf,
+      });
+  
+      const pointItems = items.map((item_id: number) => {
+        return {
+          item_id,
+          point_id,
+        }
+      })
+  
+      await trx('point_item').insert(pointItems);
+      trx.commit();
+  
+      return res.json({
+        ok: true,
+      });
 
-    const pointItems = items.map((item_id: number) => {
-      return {
-        item_id,
-        point_id,
-      }
-    })
+    } catch (err) {
+      trx.rollback();
+      return res.status(400).json({
+        error: 'Fail to store Point',
+      })
+    }
 
-    await trx('point_item').insert(pointItems);
-
-    return res.json({
-      ok: true,
-    });
   }
 }
 

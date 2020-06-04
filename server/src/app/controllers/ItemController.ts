@@ -16,6 +16,30 @@ class ItemController {
 
     return res.json(serializedItems);
   }
+
+  async store(req: Request, res: Response) {
+
+    const { title = 'Empty Title', image = 'empty-image.svg' } = req.body;
+
+    const trx = await knex.transaction();
+
+    try {
+      const item = await trx('items').insert({
+        title,
+        image,
+      });
+
+      trx.commit();
+  
+      return res.json(item);
+    } catch (err) {
+      trx.rollback();
+
+      return res.json({ error: 'Fail to Store Item' });
+    }
+
+
+  }
 }
 
 export default new ItemController();

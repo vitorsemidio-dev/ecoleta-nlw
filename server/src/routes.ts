@@ -12,6 +12,7 @@ routes.get('/users', (req, res) => {
 });
 
 routes.get('/items', ItemController.index);
+routes.post('/items', ItemController.store);
 routes.post('/points', PointController.store);
 
 export default routes;
