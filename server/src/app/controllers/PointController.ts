@@ -14,7 +14,15 @@ class PointController {
       });
     }
 
-    return res.json(point);
+    const items = await knex('items')
+      .join('point_item', 'items.id', '=', 'point_item.item_id')
+      .where('point_item.point_id', id)
+      .select('items.title')
+
+    return res.json({
+      ...point,
+      items
+    });
   }
   async store(req: Request, res: Response) {
     const {
