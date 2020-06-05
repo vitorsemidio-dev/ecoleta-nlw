@@ -34,6 +34,15 @@ const CreatePoint = () => {
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    whatsapp: '',
+  });
+
+  const [seletedItems, setSeletedItems] = useState<number[]>([]);
+
+
   useEffect(() => {
     api.get('/items').then(({ data }) => {
       setItems(data);
@@ -83,6 +92,23 @@ const CreatePoint = () => {
     setSelectedPosition([lat, lng]);
   }
 
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    console.log(event.target.name, event.target.value);
+
+    const { name, value } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    console.log(formData);
+  }
+
+  function handleSeletedItem(id: number) {
+    setSeletedItems([...seletedItems, id]);
+  }
+
   return (
     <>
       <div id="page-create-point">
@@ -107,6 +133,7 @@ const CreatePoint = () => {
                 id="name"
                 name="name"
                 type="text"
+                onChange={handleInputChange}
               />
             </div>
 
@@ -117,6 +144,7 @@ const CreatePoint = () => {
                   id="email"
                   name="email"
                   type="email"
+                  onChange={handleInputChange}
                 />
               </div>
               <div className="field">
@@ -125,6 +153,7 @@ const CreatePoint = () => {
                   id="whastapp"
                   name="whastapp"
                   type="text"
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -187,7 +216,11 @@ const CreatePoint = () => {
 
             <ul className="items-grid">
               {items.map(({ id, image_url, title}) => (
-                <li key={id}>
+                <li 
+                  key={id}
+                  onClick={() => handleSeletedItem(id)}
+                  className={seletedItems.includes(id) ? 'selected' : ''}
+                >
                   <img src={image_url} alt={title}/>
                   <span>{title}</span>
                 </li>
