@@ -10,8 +10,14 @@ import './CreatePoint.css';
 
 import logo from '../../assets/logo.svg';
 
+interface Item {
+  id: number;
+  title: string;
+  image_url: string;
+}
+
 const CreatePoint = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
     api.get('/items').then(({ data }) => {
@@ -106,30 +112,12 @@ const CreatePoint = () => {
             </legend>
 
             <ul className="items-grid">
-              <li>
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
-              <li>
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
-              <li className="selected">
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
-              <li>
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
-              <li>
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
-              <li>
-                <img src="http://localhost:3333/uploads/lampadas.svg" alt="tmp"/>
-                <span>Lâmpadas</span>
-              </li>
+              {items.map(({ id, image_url, title}) => (
+                <li key={id}>
+                  <img src={image_url} alt={title}/>
+                  <span>{title}</span>
+                </li>
+              ))}
             </ul>
           </fieldset>
 
