@@ -101,12 +101,17 @@ const CreatePoint = () => {
       ...formData,
       [name]: value,
     });
-
-    console.log(formData);
   }
 
   function handleSeletedItem(id: number) {
-    setSeletedItems([...seletedItems, id]);
+    const alreadySeleted = seletedItems.findIndex(item => item === id);
+
+    if (alreadySeleted >= 0) {
+      const filteredItems = seletedItems.filter(item => item !== id);
+      setSeletedItems(filteredItems);
+    } else {
+      setSeletedItems([...seletedItems, id]);
+    }
   }
 
   return (
