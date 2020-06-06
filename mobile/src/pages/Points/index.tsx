@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import MapView from 'react-native-maps';
 
 const Point = () => {
   const navigation = useNavigation();
@@ -16,6 +17,17 @@ const Point = () => {
       <TouchableOpacity onPress={handleNavigateBack}>
         <Icon name="arrow-left" size={20} color="#34cb46" />
       </TouchableOpacity>
+
+      <Text style={styles.title}>
+        Bem vindo.
+      </Text>
+      <Text style={styles.description}>
+        Encontre no mapa um ponto de coleta.
+      </Text>
+
+      <View style={styles.mapContainer}>
+        <MapView style={styles.map} />
+      </View>
     </View>
   )
 }
@@ -29,15 +41,15 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 20,
-    fontFamily: 'Ubuntu_700Bold',
+    // fontFamily: 'Ubuntu_700Bold',
     marginTop: 24,
   },
 
   description: {
-    color: '#6C6C80',
+    color: '#F0F0F5',
     fontSize: 16,
     marginTop: 4,
-    fontFamily: 'Roboto_400Regular',
+    // fontFamily: 'Roboto_400Regular',
   },
 
   mapContainer: {
@@ -76,7 +88,7 @@ const styles = StyleSheet.create({
 
   mapMarkerTitle: {
     flex: 1,
-    fontFamily: 'Roboto_400Regular',
+    // fontFamily: 'Roboto_400Regular',
     color: '#FFF',
     fontSize: 13,
     lineHeight: 23,
@@ -111,7 +123,7 @@ const styles = StyleSheet.create({
   },
 
   itemTitle: {
-    fontFamily: 'Roboto_400Regular',
+    // fontFamily: 'Roboto_400Regular',
     textAlign: 'center',
     fontSize: 13,
   },
