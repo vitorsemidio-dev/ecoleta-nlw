@@ -95,35 +95,36 @@ const Point = () => {
         </Text>
 
         <View style={styles.mapContainer}>
-          <MapView
-            loadingEnabled={initialPosition[0] === 0}
-            initialRegion={{
-              latitude: initialPosition[0],
-              longitude: initialPosition[1],
-              latitudeDelta: 0.014,
-              longitudeDelta: 0.014,
-            }}
-            style={styles.map}>
-              <Marker
-                onPress={handleNavigateToDetail}
-                style={styles.mapMarker}
-                coordinate={{
-                  latitude: -22.9054002,
-                  longitude: -43.2224313,
-                }}
-              >
-                <View style={styles.mapMarkerContainer}>
-                  <Image 
-                    style={styles.mapMarkerImage}
-                    source={{
-                      uri: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'
-                    }} 
-                  />
-                  <Text style={styles.mapMarkerTitle}>Coleta</Text>
+          {initialPosition[0] !== 0 && (
+            <MapView
+              initialRegion={{
+                latitude: initialPosition[0],
+                longitude: initialPosition[1],
+                latitudeDelta: 0.014,
+                longitudeDelta: 0.014,
+              }}
+              style={styles.map}>
+                <Marker
+                  onPress={handleNavigateToDetail}
+                  style={styles.mapMarker}
+                  coordinate={{
+                    latitude: initialPosition[0],
+                    longitude: initialPosition[1],
+                  }}
+                >
+                  <View style={styles.mapMarkerContainer}>
+                    <Image 
+                      style={styles.mapMarkerImage}
+                      source={{
+                        uri: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'
+                      }} 
+                    />
+                    <Text style={styles.mapMarkerTitle}>Coleta</Text>
 
-                </View>
-              </Marker>
-            </MapView>
+                  </View>
+                </Marker>
+              </MapView>
+          )}
         </View>
       </View>
 
