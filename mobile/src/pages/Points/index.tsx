@@ -37,7 +37,14 @@ const Point = () => {
         </Text>
 
         <View style={styles.mapContainer}>
-          <MapView style={styles.map} />
+          <MapView
+            initialRegion={{
+              latitude: -22.9054002,
+              longitude: -43.2224313,
+              latitudeDelta: 0.014,
+              longitudeDelta: 0.014,
+            }}
+            style={styles.map} />
         </View>
       </View>
 
