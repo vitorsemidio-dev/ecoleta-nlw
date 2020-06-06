@@ -25,8 +25,17 @@ interface Item {
   image_url: string;
 }
 
+interface Point {
+  id: number;
+  image: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 const Point = () => {
   const [items, setItems] = useState<Item[]>([]);
+  const [points, setPoints] = useState<Point[]>([]);
   const [seletedItems, setSeletedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
@@ -70,13 +79,23 @@ const Point = () => {
 
       const { latitude, longitude } = location.coords;
 
-      console.log(latitude, longitude);
-
       setInitialPosition([latitude, longitude]);
     }
 
 
     loadPosition();
+  }, []);
+
+  useEffect(() => {
+    api.get('points', {
+      params: {
+        city: 'Rio de Janeiro',
+        uf: 'RJ',
+        items: [6, 7],
+      }
+    }).then((response) => {
+      setPoints(response.data);
+    })
   }, []);
 
   return (
