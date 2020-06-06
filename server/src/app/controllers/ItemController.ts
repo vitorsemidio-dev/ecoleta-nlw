@@ -6,11 +6,14 @@ class ItemController {
   async index(req: Request, res: Response) {
     const items = await knex('items').select('*');
 
+    const host = process.env.HOST || 'http://localhost';
+    const port = process.env.PORT || 3333;
+
     const serializedItems = items.map(({ id, title, image }) => {
       return {
         id,
         title,
-        image_url: `http://localhost:3333/uploads/${image}`,
+        image_url: `${host}:${port}/uploads/${image}`,
       }
     });
 
