@@ -6,12 +6,15 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Alert,
 } from 'react-native';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
+import * as Location from 'expo-location';
+
 import api from '../../services/api';
 
 Icon.loadFont();
@@ -25,6 +28,7 @@ interface Item {
 const Point = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [seletedItems, setSeletedItems] = useState<number[]>([]);
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
   const navigation = useNavigation();
 
@@ -53,11 +57,33 @@ const Point = () => {
     });
   }, []);
 
+  useEffect(() => {
+    async function loadPosition() {
+      const { status } = await Location.requestPermissionsAsync();
+
+      if (status !== 'granted') {
+        Alert.alert('Ops...!', 'Precisamos de sua permissão para obter a localização');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync();
+
+      const { latitude, longitude } = location.coords;
+
+      console.log(latitude, longitude);
+
+      setInitialPosition([latitude, longitude]);
+    }
+
+
+    loadPosition();
+  }, []);
+
   return (
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
+          <Icon name="arrow-left" size={20} color="#34cb46" />
           <Text>back</Text>
         </TouchableOpacity>
 
@@ -70,9 +96,10 @@ const Point = () => {
 
         <View style={styles.mapContainer}>
           <MapView
+            loadingEnabled={initialPosition[0] === 0}
             initialRegion={{
-              latitude: -22.9054002,
-              longitude: -43.2224313,
+              latitude: initialPosition[0],
+              longitude: initialPosition[1],
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
             }}
