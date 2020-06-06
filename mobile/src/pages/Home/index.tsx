@@ -38,7 +38,7 @@ const Home = () => {
         >
           <View style={styles.buttonIcon}>
             <Text>
-              <Icon name="arrow-right" color="#FFF" size={24} />
+              {/* <Icon name="arrow-right" color="#FFF" size={24} /> */}
             </Text>
           </View>
           <Text style={styles.buttonText}>

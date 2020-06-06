@@ -4,6 +4,9 @@ import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import MapView from 'react-native-maps';
+import { SvgUri } from 'react-native-svg';
+
+Icon.loadFont();
 
 const Point = () => {
   const navigation = useNavigation();
@@ -13,22 +16,61 @@ const Point = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={handleNavigateBack}>
-        <Icon name="arrow-left" size={20} color="#34cb46" />
-      </TouchableOpacity>
+    <>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={handleNavigateBack}>
+          {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
+          <Text>back</Text>
+        </TouchableOpacity>
 
-      <Text style={styles.title}>
-        Bem vindo.
-      </Text>
-      <Text style={styles.description}>
-        Encontre no mapa um ponto de coleta.
-      </Text>
+        <Text style={styles.title}>
+          Bem vindo.
+        </Text>
+        <Text style={styles.description}>
+          Encontre no mapa um ponto de coleta.
+        </Text>
 
-      <View style={styles.mapContainer}>
-        <MapView style={styles.map} />
+        <View style={styles.mapContainer}>
+          <MapView style={styles.map} />
+        </View>
       </View>
-    </View>
+
+      <View style={styles.itemsContainer}>
+        <TouchableOpacity 
+          style={styles.item}
+          onPress={() => {}}
+        >
+          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+          <Text style={styles.itemTitle}>Lâmpadas</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.item}
+          onPress={() => {}}
+        >
+          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+          <Text style={styles.itemTitle}>Lâmpadas</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.item}
+          onPress={() => {}}
+        >
+          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+          <Text style={styles.itemTitle}>Lâmpadas</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.item}
+          onPress={() => {}}
+        >
+          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+          <Text style={styles.itemTitle}>Lâmpadas</Text>
+        </TouchableOpacity>
+
+
+      </View>
+    </>
   )
 }
 
@@ -101,7 +143,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    backgroundColor: '#fff',
+    backgroundColor: '#83838e',
     borderWidth: 2,
     borderColor: '#eee',
     height: 120,
