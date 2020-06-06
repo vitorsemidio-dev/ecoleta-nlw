@@ -4,7 +4,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Text,
-  Image
+  Image,
+  SafeAreaView,
 } from 'react-native';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -21,7 +22,9 @@ const Detail = () => {
   }
 
   return (
-    <>
+    <SafeAreaView style={{
+      flex: 1
+    }}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
           {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
@@ -60,7 +63,7 @@ const Detail = () => {
           </Text>
         </RectButton>
       </View>
-    </>
+    </SafeAreaView>
   )
 }
 
