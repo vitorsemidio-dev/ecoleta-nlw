@@ -1,14 +1,29 @@
 import React from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
+import {
+  View,
+  ImageBackground,
+  Image,
+  StyleSheet,
+  Text,
+} from 'react-native';
 
 const Home = () => {
   return (
-    <View style={styles.container} >
-      <Image source={require('../../assets/logo.png')} />
-      <Text>
-        Reloading
-      </Text>
-    </View>
+    <ImageBackground 
+      source={require('../../assets/home-background.png')}
+      style={styles.container}
+      imageStyle={{ width: 274, height: 368 }}
+    >
+      <View style={styles.main}>
+        <Image source={require('../../assets/logo.png')} />
+        <Text style={styles.title}>Seu Marketplace de coleta de resíduos</Text>
+        <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
+      </View>
+
+      <View style={styles.footer}>
+
+      </View>
+    </ImageBackground>
   )
 }
 
