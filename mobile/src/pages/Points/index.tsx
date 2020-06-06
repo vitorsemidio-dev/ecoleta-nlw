@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -36,37 +42,60 @@ const Point = () => {
       </View>
 
       <View style={styles.itemsContainer}>
-        <TouchableOpacity 
-          style={styles.item}
-          onPress={() => {}}
-        >
-          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
-          <Text style={styles.itemTitle}>Lâmpadas</Text>
-        </TouchableOpacity>
+        <ScrollView
+          contentContainerStyle={{
+            paddingHorizontal: 20
+          }}
+          horizontal
+          showsHorizontalScrollIndicator={false}>
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.item}
-          onPress={() => {}}
-        >
-          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
-          <Text style={styles.itemTitle}>Lâmpadas</Text>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.item}
-          onPress={() => {}}
-        >
-          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
-          <Text style={styles.itemTitle}>Lâmpadas</Text>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity 
-          style={styles.item}
-          onPress={() => {}}
-        >
-          <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
-          <Text style={styles.itemTitle}>Lâmpadas</Text>
-        </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.item}
+            onPress={() => {}}
+          >
+            <SvgUri width={42} height={42} uri="http://192.168.11.10:3333/uploads/lampadas.svg" />
+            <Text style={styles.itemTitle}>Lâmpadas</Text>
+          </TouchableOpacity>
+        </ScrollView>
 
 
       </View>
