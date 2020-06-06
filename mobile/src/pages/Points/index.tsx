@@ -24,6 +24,7 @@ interface Item {
 
 const Point = () => {
   const [items, setItems] = useState<Item[]>([]);
+  const [seletedItems, setSeletedItems] = useState<number[]>([]);
 
   const navigation = useNavigation();
 
@@ -33,6 +34,17 @@ const Point = () => {
 
   function handleNavigateToDetail() {
     navigation.navigate('Detail');
+  }
+
+  function handleSeletedItem(id: number) {
+    const alreadySeleted = seletedItems.findIndex(item => item === id);
+
+    if (alreadySeleted >= 0) {
+      const filteredItems = seletedItems.filter(item => item !== id);
+      setSeletedItems(filteredItems);
+    } else {
+      setSeletedItems([...seletedItems, id]);
+    }
   }
 
   useEffect(() => {
@@ -100,8 +112,12 @@ const Point = () => {
           {items.map(({ id, image_url, title }) => (
             <TouchableOpacity
               key={String(id)}
-              style={styles.item}
-              onPress={() => {}}
+              style={[
+                styles.item,
+                seletedItems.includes(id) ? styles.selectedItem : {},
+              ]}
+              onPress={() => handleSeletedItem(id)}
+              activeOpacity={0.6}
             >
               <SvgUri width={42} height={42} uri={ image_url } />
               <Text style={styles.itemTitle}>{ title }</Text>
@@ -197,13 +213,13 @@ const styles = StyleSheet.create({
     marginRight: 8,
     alignItems: 'center',
     justifyContent: 'space-between',
-
     textAlign: 'center',
   },
 
   selectedItem: {
     borderColor: '#34CB79',
     borderWidth: 2,
+    backgroundColor: '#eee',
   },
 
   itemTitle: {
