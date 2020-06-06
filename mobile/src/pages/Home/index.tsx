@@ -6,6 +6,10 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { Feather as Icon } from '@expo/vector-icons';
+
+Icon.loadFont();
 
 const Home = () => {
   return (
@@ -21,7 +25,19 @@ const Home = () => {
       </View>
 
       <View style={styles.footer}>
-
+        <RectButton 
+          style={styles.button}
+          onPress={() => {}}
+        >
+          <View style={styles.buttonIcon}>
+            <Text>
+              <Icon name="arrow-right" color="#FFF" size={24} />
+            </Text>
+          </View>
+          <Text style={styles.buttonText}>
+            Entrar
+          </Text>
+        </RectButton>
       </View>
     </ImageBackground>
   )
@@ -42,7 +58,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#322153',
     fontSize: 32,
-    fontFamily: 'Ubuntu_700Bold',
+    // fontFamily: 'Ubuntu_700Bold',
     maxWidth: 260,
     marginTop: 64,
   },
@@ -51,7 +67,7 @@ const styles = StyleSheet.create({
     color: '#F0F0F5',
     fontSize: 16,
     marginTop: 16,
-    fontFamily: 'Roboto_400Regular',
+    // fontFamily: 'Roboto_400Regular',
     maxWidth: 260,
     lineHeight: 24,
   },
@@ -92,7 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     color: '#F0F0F5',
-    fontFamily: 'Roboto_500Medium',
+    // fontFamily: 'Roboto_500Medium',
     fontSize: 16,
   }
 });
