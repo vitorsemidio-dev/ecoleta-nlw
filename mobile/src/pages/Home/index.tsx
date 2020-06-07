@@ -14,12 +14,6 @@ import RNPickerSelect from 'react-native-picker-select';
 
 Icon.loadFont();
 
-interface Item {
-  id: number;
-  title: string;
-  image_url: string;
-}
-
 interface IBGEUFResponse {
   sigla: string;
 }
@@ -69,7 +63,10 @@ const Home = () => {
   const navigation = useNavigation();
 
   function handleNavigateToPoints() {
-    navigation.navigate('Points');
+    navigation.navigate('Points', {
+      uf: selectedUf,
+      city: selectedCity,
+    });
   }
 
   function handleSelectedUf(value: string) {
@@ -92,7 +89,7 @@ const Home = () => {
         <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
       </View>
 
-      <View>
+      <View style={styles.footer}>
         <RNPickerSelect
           placeholder={{
             label: "Selecione a Unidade Federativa..."
@@ -107,9 +104,6 @@ const Home = () => {
           onValueChange={handleSelectedCity}
           items={cityNames}
         />
-      </View>
-
-      <View style={styles.footer}>
         <RectButton 
           style={styles.button}
           onPress={handleNavigateToPoints}
