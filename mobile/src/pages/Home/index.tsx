@@ -10,6 +10,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import RNPickerSelect from 'react-native-picker-select';
 
 Icon.loadFont();
 
@@ -27,8 +28,13 @@ interface IBGECityResponse {
   nome: string;
 }
 
+interface UFPickerSelect {
+  label: string;
+  value: string;
+}
+
 const Home = () => {
-  const [ufs, setUfs] = useState<string[]>([]);
+  const [ufs, setUfs] = useState<UFPickerSelect[]>([]);
   const [cityNames, setCityNames] = useState<string[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
@@ -36,7 +42,13 @@ const Home = () => {
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
       .then(({ data }) => {
-        const ufInitials = data.map(uf => uf.sigla);
+        const ufInitials = data.map(uf => {
+          return {
+            label: uf.sigla,
+            value: uf.sigla,
+          }
+        });
+        console.log(ufInitials);
 
         setUfs(ufInitials);
       })
@@ -70,6 +82,16 @@ const Home = () => {
         <Image source={require('../../assets/logo.png')} />
         <Text style={styles.title}>Seu Marketplace de coleta de resíduos</Text>
         <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
+      </View>
+
+      <View>
+        <RNPickerSelect
+          placeholder={{
+            label: "Selecione um estado"
+          }}
+          onValueChange={(value) => console.log(value)}
+          items={ufs}
+        />
       </View>
 
       <View style={styles.footer}>
