@@ -35,20 +35,17 @@ interface UFPickerSelect {
 
 const Home = () => {
   const [ufs, setUfs] = useState<UFPickerSelect[]>([]);
-  const [cityNames, setCityNames] = useState<string[]>([]);
+  const [cityNames, setCityNames] = useState<UFPickerSelect[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
 
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
       .then(({ data }) => {
-        const ufInitials = data.map(uf => {
-          return {
-            label: uf.sigla,
-            value: uf.sigla,
-          }
-        });
-        console.log(ufInitials);
+        const ufInitials = data.map(uf => ({
+          label: uf.sigla,
+          value: uf.sigla,
+        }));
 
         setUfs(ufInitials);
       })
@@ -60,7 +57,10 @@ const Home = () => {
     };
     axios.get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios?orderBy=nome`)
       .then(({ data }) => {
-        const cityNames = data.map(city => city.nome);
+        const cityNames = data.map(city => ({
+          label: city.nome,
+          value: city.nome,
+        }));
 
         setCityNames(cityNames);
       });
@@ -70,6 +70,14 @@ const Home = () => {
 
   function handleNavigateToPoints() {
     navigation.navigate('Points');
+  }
+
+  function handleSeletedUf(value: string) {
+    setSelectedUf(value);
+  }
+
+  function handleSeletedCity(value: string) {
+    setSelectedCity(value)
   }
 
   return (
@@ -87,10 +95,17 @@ const Home = () => {
       <View>
         <RNPickerSelect
           placeholder={{
-            label: "Selecione um estado"
+            label: "Selecione a Unidade Federativa..."
           }}
-          onValueChange={(value) => console.log(value)}
+          onValueChange={handleSeletedUf}
           items={ufs}
+        />
+        <RNPickerSelect
+          placeholder={{
+            label: "Selecione um município..."
+          }}
+          onValueChange={handleSeletedCity}
+          items={cityNames}
         />
       </View>
 
