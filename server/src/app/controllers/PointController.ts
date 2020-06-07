@@ -72,7 +72,10 @@ class PointController {
     try {
       const [ point_id, ] = await trx('points').insert(point);
   
-      const pointItems = items.map((item_id: number) => {
+      const pointItems = items
+        .split(',')
+        .map((item: string) => Number(item.trim()))
+        .map((item_id: number) => {
         return {
           item_id,
           point_id,
