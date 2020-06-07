@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    backgroundColor: '#83838e',
+    backgroundColor: '#c1baba',
     borderWidth: 2,
     borderColor: '#eee',
     height: 120,
