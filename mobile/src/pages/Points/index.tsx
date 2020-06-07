@@ -102,8 +102,8 @@ const Point = () => {
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb46" />
-          {/* <Text>back</Text> */}
+          {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
+          <Text>back</Text>
         </TouchableOpacity>
 
         <Text style={styles.title}>
