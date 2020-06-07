@@ -1,5 +1,7 @@
-import React, {useCallback} from 'react'
-import  {useDropzone} from 'react-dropzone'
+import React, { useCallback } from 'react';
+import  { useDropzone } from 'react-dropzone';
+
+import './Dropzone.css';
 
 const Dropzone = () => {
   const onDrop = useCallback(acceptedFiles => {
@@ -9,7 +11,7 @@ const Dropzone = () => {
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
-    <div {...getRootProps()}>
+    <div className="dropzone" {...getRootProps()}>
       <input {...getInputProps()} />
       {
         isDragActive ?
