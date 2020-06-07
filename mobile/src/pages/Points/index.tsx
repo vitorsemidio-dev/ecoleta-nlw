@@ -41,7 +41,7 @@ interface Params {
 const Point = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
-  const [seletedItems, setSeletedItems] = useState<number[]>([]);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
   const navigation = useNavigation();
@@ -59,14 +59,14 @@ const Point = () => {
     navigation.navigate('Detail', { point_id: id });
   }
 
-  function handleSeletedItem(id: number) {
-    const alreadySeleted = seletedItems.findIndex(item => item === id);
+  function handleSelectedItem(id: number) {
+    const alreadySelected = selectedItems.findIndex(item => item === id);
 
-    if (alreadySeleted >= 0) {
-      const filteredItems = seletedItems.filter(item => item !== id);
-      setSeletedItems(filteredItems);
+    if (alreadySelected >= 0) {
+      const filteredItems = selectedItems.filter(item => item !== id);
+      setSelectedItems(filteredItems);
     } else {
-      setSeletedItems([...seletedItems, id]);
+      setSelectedItems([...selectedItems, id]);
     }
   }
 
@@ -99,14 +99,15 @@ const Point = () => {
   useEffect(() => {
     api.get('points', {
       params: {
-        city: 'Rio de Janeiro',
-        uf: 'RJ',
-        items: [6, 7],
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems,
       }
     }).then((response) => {
       setPoints(response.data);
+      console.log('loading')
     })
-  }, []);
+  }, [selectedItems]);
 
   return (
     <>
@@ -174,9 +175,9 @@ const Point = () => {
               key={String(id)}
               style={[
                 styles.item,
-                seletedItems.includes(id) ? styles.selectedItem : {},
+                selectedItems.includes(id) ? styles.selectedItem : {},
               ]}
-              onPress={() => handleSeletedItem(id)}
+              onPress={() => handleSelectedItem(id)}
               activeOpacity={0.6}
             >
               <SvgUri width={42} height={42} uri={ image_url } />
