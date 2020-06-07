@@ -33,6 +33,7 @@ class PointController {
 
     return res.json(serializedPoints);
   }
+
   async show(req: Request, res: Response) {
     const { id } = req.params;
 
@@ -62,6 +63,7 @@ class PointController {
       items
     });
   }
+
   async store(req: Request, res: Response) {
     const {
       name,
@@ -115,6 +117,22 @@ class PointController {
       })
     }
 
+  }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const point = await knex('points').where('id', id).first();
+
+    if (!point) {
+      return res.status(400).json({
+        error: 'Point does not found'
+      });
+    }
+
+    await knex('points').where('id', id).first().delete();
+
+    return res.status(204).send();
   }
 }
 

@@ -13,6 +13,7 @@ routes.post('/items', ItemController.store);
 
 routes.get('/points', PointController.index);
 routes.get('/points/:id', PointController.show);
+routes.delete('/points/:id', PointController.delete);
 routes.post('/points', upload.single('image'), PointController.store);
 
 export default routes;
