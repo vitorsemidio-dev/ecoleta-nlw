@@ -19,34 +19,34 @@
 
 ### 🧭 Rodando o Backend
 
-```bash
-# Clone este repositório
-$ git clone https://github.com/vitorsemidio-dev/ecoleta-nlw.git
+  ```bash
+  # Clone este repositório
+  $ git clone https://github.com/vitorsemidio-dev/ecoleta-nlw.git
 
-# Acesse a pasta do projeto
-$ cd ecoleta-nlw
+  # Acesse a pasta do projeto
+  $ cd ecoleta-nlw
 
-# Acesse para a pasta do server
-$ cd server
+  # Acesse para a pasta do server
+  $ cd server
 
-# Instale as dependências
-$ npm install ou yarn add
+  # Instale as dependências
+  $ npm install ou yarn add
 
-# Faça a migração das tabelas do banco de dados
-$ npm run knex:migrate ou yarn knex:migrate
+  # Faça a migração das tabelas do banco de dados
+  $ npm run knex:migrate ou yarn knex:migrate
 
-# Semente para preencher o banco com dados iniciais
-$ npm run knex:seed ou yarn knex:seed
+  # Semente para preencher o banco com dados iniciais
+  $ npm run knex:seed ou yarn knex:seed
 
-# Crie .env
-$ touch .env #Após criar o arquivo, preencha os valores de HOST e PORT
+  # Crie .env
+  $ touch .env #Após criar o arquivo, preencha os valores de HOST e PORT
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev ou yarn dev
+  # Execute a aplicação em modo de desenvolvimento
+  $ npm run dev ou yarn dev
 
-# O servidor inciará na porta e host informado no .env
-# Caso não informe, rodará no http://localhost:3333
-```
+  # O servidor inciará na porta e host informado no .env
+  # Caso não informe, rodará no http://localhost:3333
+  ```
 ### 🚀 Tecnologias usadas
 
 - [Express](https://expressjs.com/pt-br/)
@@ -60,7 +60,41 @@ $ npm run dev ou yarn dev
 
 ![Server Image](.github/server-img01.png)
 
-## Web
+## 💻 Web
+
+### ✋🏻 Antes de rodar o FrontEnd
+  - `Certifique-se de que o backend esteja rodando`
 
 
-## Mobile
+### 🧭 Rodando o FrontEnd
+
+  ```bash
+  # Clone este repositório
+  $ git clone https://github.com/vitorsemidio-dev/ecoleta-nlw.git
+
+  # Acesse a pasta do projeto
+  $ cd ecoleta-nlw
+
+  # Acesse para a pasta do server
+  $ cd web
+
+  # Instale as dependências
+  $ npm install ou yarn add
+
+  # Execute a aplicação em modo de desenvolvimento
+  $ npm start ou yarn start
+
+  #A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+  ```
+### 🚀 Tecnologias usadas
+
+- [React Leaflet](https://react-leaflet.js.org/)
+- [React Dropzone](https://react-dropzone.js.org/)
+
+### 📸 Foto
+
+![Home](.github/web-img01.png)
+![Formulario Vazio](.github/web-img02.png)
+![Formulario Preenchido](.github/web-img03.png)
+
+## 📱 Mobile
