@@ -45,8 +45,8 @@ const Point = () => {
     navigation.goBack();
   }
 
-  function handleNavigateToDetail() {
-    navigation.navigate('Detail');
+  function handleNavigateToDetail(id: number) {
+    navigation.navigate('Detail', { point_id: id });
   }
 
   function handleSeletedItem(id: number) {
@@ -103,7 +103,7 @@ const Point = () => {
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
           <Icon name="arrow-left" size={20} color="#34cb46" />
-          <Text>back</Text>
+          {/* <Text>back</Text> */}
         </TouchableOpacity>
 
         <Text style={styles.title}>
@@ -126,7 +126,7 @@ const Point = () => {
                 {points.map(point => (
                   <Marker
                     key={String(point.id)}
-                    onPress={handleNavigateToDetail}
+                    onPress={() => handleNavigateToDetail(point.id)}
                     style={styles.mapMarker}
                     coordinate={{
                       latitude: point.latitude,

@@ -8,14 +8,18 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
+import Constants from 'expo-constants';
 
 // Icon.loadFont();
 // FontAwesome.loadFont();
 
 const Detail = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  console.log(route.params);
 
   function handleNavigateBack() {
     navigation.goBack();
@@ -27,8 +31,8 @@ const Detail = () => {
     }}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
-          <Text>back</Text>
+          <Icon name="arrow-left" size={20} color="#34cb46" />
+          {/* <Text>back</Text> */}
         </TouchableOpacity>
 
         <Image
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
-    paddingTop: 20,
+    paddingTop: 20 + Constants.statusBarHeight,
   },
 
   pointImage: {
