@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LeafletMouseEvent } from 'leaflet';
 
 import api from '../../services/api';
+import Dropzone from '../../components/Dropzone';
 
 import './CreatePoint.css';
 
@@ -154,6 +155,8 @@ const CreatePoint = () => {
 
         <form onSubmit={handleSubmit}>
           <h1>Cadastro do <br /> ponto de coleta</h1>
+
+          <Dropzone />
 
           <fieldset>
             <legend>
