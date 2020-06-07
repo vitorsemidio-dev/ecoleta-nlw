@@ -123,25 +123,28 @@ const Point = () => {
                 longitudeDelta: 0.014,
               }}
               style={styles.map}>
-                <Marker
-                  onPress={handleNavigateToDetail}
-                  style={styles.mapMarker}
-                  coordinate={{
-                    latitude: initialPosition[0],
-                    longitude: initialPosition[1],
-                  }}
-                >
-                  <View style={styles.mapMarkerContainer}>
-                    <Image 
-                      style={styles.mapMarkerImage}
-                      source={{
-                        uri: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'
-                      }} 
-                    />
-                    <Text style={styles.mapMarkerTitle}>Coleta</Text>
+                {points.map(point => (
+                  <Marker
+                    key={String(point.id)}
+                    onPress={handleNavigateToDetail}
+                    style={styles.mapMarker}
+                    coordinate={{
+                      latitude: point.latitude,
+                      longitude: point.longitude,
+                    }}
+                  >
+                    <View style={styles.mapMarkerContainer}>
+                      <Image 
+                        style={styles.mapMarkerImage}
+                        source={{
+                          uri: point.image
+                        }} 
+                      />
+                      <Text style={styles.mapMarkerTitle}>{point.name}</Text>
 
-                  </View>
-                </Marker>
+                    </View>
+                  </Marker>
+                ))}
               </MapView>
           )}
         </View>
@@ -239,6 +242,7 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 13,
     lineHeight: 23,
+    textAlign: 'center',
   },
 
   itemsContainer: {
