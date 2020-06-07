@@ -21,7 +21,17 @@ class PointController {
       .distinct()
       .select('points.*');
 
-    return res.json(points);
+    const host = process.env.HOST || 'http://localhost';
+    const port = process.env.PORT || 3333;
+
+    const serializedPoints = points.map(point => {
+      return {
+        ...point,
+        image_url: `${host}:${port}/uploads/${point.image}`,
+      }
+    });
+
+    return res.json(serializedPoints);
   }
   async show(req: Request, res: Response) {
     const { id } = req.params;
@@ -34,13 +44,21 @@ class PointController {
       });
     }
 
+    const host = process.env.HOST || 'http://localhost';
+    const port = process.env.PORT || 3333;
+
+    const serializedPoints = {
+      ...point,
+      image_url: `${host}:${port}/uploads/${point.image}`,
+    };
+
     const items = await knex('items')
       .join('point_item', 'items.id', '=', 'point_item.item_id')
       .where('point_item.point_id', id)
       .select('items.title')
 
     return res.json({
-      ...point,
+      point: serializedPoints,
       items
     });
   }
