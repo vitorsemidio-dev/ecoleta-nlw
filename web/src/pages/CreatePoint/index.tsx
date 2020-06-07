@@ -40,7 +40,7 @@ const CreatePoint = () => {
     whatsapp: '',
   });
 
-  const [seletedItems, setSeletedItems] = useState<number[]>([]);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const history = useHistory();
 
@@ -79,12 +79,12 @@ const CreatePoint = () => {
     });
   }, []);
 
-  function handleSeletedUf(event: ChangeEvent<HTMLSelectElement>) {
+  function handleSelectedUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
     setSelectedUf(uf);
   }
 
-  function handleSeletedCity(event: ChangeEvent<HTMLSelectElement>) {
+  function handleSelectedCity(event: ChangeEvent<HTMLSelectElement>) {
     const city = event.target.value;
     setSelectedCity(city);
   }
@@ -103,14 +103,14 @@ const CreatePoint = () => {
     });
   }
 
-  function handleSeletedItem(id: number) {
-    const alreadySeleted = seletedItems.findIndex(item => item === id);
+  function handleSelectedItem(id: number) {
+    const alreadySelected = selectedItems.findIndex(item => item === id);
 
-    if (alreadySeleted >= 0) {
-      const filteredItems = seletedItems.filter(item => item !== id);
-      setSeletedItems(filteredItems);
+    if (alreadySelected >= 0) {
+      const filteredItems = selectedItems.filter(item => item !== id);
+      setSelectedItems(filteredItems);
     } else {
-      setSeletedItems([...seletedItems, id]);
+      setSelectedItems([...selectedItems, id]);
     }
   }
 
@@ -121,7 +121,7 @@ const CreatePoint = () => {
     const uf = selectedUf;
     const city = selectedCity;
     const [latitude, longitude] = selectedPosition;
-    const items = seletedItems;
+    const items = selectedItems;
 
     const data = {
       name,
@@ -211,7 +211,7 @@ const CreatePoint = () => {
                 <label htmlFor="uf">Estado (UF)</label>
                 <select 
                   value={selectedUf}
-                  onChange={handleSeletedUf}
+                  onChange={handleSelectedUf}
                   name="uf"
                   id="uf">
                   <option value="0">Selecione uma UF</option>
@@ -226,7 +226,7 @@ const CreatePoint = () => {
                 <label htmlFor="city">Cidade</label>
                 <select 
                   value={selectedCity}
-                  onChange={handleSeletedCity}
+                  onChange={handleSelectedCity}
                   name="city"
                   id="city">
                   <option value="0">Selecione uma cidade</option>
@@ -250,8 +250,8 @@ const CreatePoint = () => {
               {items.map(({ id, image_url, title}) => (
                 <li 
                   key={id}
-                  onClick={() => handleSeletedItem(id)}
-                  className={seletedItems.includes(id) ? 'selected' : ''}
+                  onClick={() => handleSelectedItem(id)}
+                  className={selectedItems.includes(id) ? 'selected' : ''}
                 >
                   <img src={image_url} alt={title}/>
                   <span>{title}</span>

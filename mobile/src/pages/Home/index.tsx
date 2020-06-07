@@ -28,14 +28,14 @@ interface IBGECityResponse {
   nome: string;
 }
 
-interface UFPickerSelect {
+interface ItemPickerSelect {
   label: string;
   value: string;
 }
 
 const Home = () => {
-  const [ufs, setUfs] = useState<UFPickerSelect[]>([]);
-  const [cityNames, setCityNames] = useState<UFPickerSelect[]>([]);
+  const [ufs, setUfs] = useState<ItemPickerSelect[]>([]);
+  const [cityNames, setCityNames] = useState<ItemPickerSelect[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
 
@@ -72,11 +72,11 @@ const Home = () => {
     navigation.navigate('Points');
   }
 
-  function handleSeletedUf(value: string) {
+  function handleSelectedUf(value: string) {
     setSelectedUf(value);
   }
 
-  function handleSeletedCity(value: string) {
+  function handleSelectedCity(value: string) {
     setSelectedCity(value)
   }
 
@@ -97,14 +97,14 @@ const Home = () => {
           placeholder={{
             label: "Selecione a Unidade Federativa..."
           }}
-          onValueChange={handleSeletedUf}
+          onValueChange={handleSelectedUf}
           items={ufs}
         />
         <RNPickerSelect
           placeholder={{
             label: "Selecione um município..."
           }}
-          onValueChange={handleSeletedCity}
+          onValueChange={handleSelectedCity}
           items={cityNames}
         />
       </View>
