@@ -78,8 +78,7 @@ const Detail = () => {
         }}>
           <View style={styles.container}>
             <TouchableOpacity onPress={handleNavigateBack}>
-              {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
-              <Text>back</Text>
+              <Icon name="arrow-left" size={20} color="#34cb46" />
             </TouchableOpacity>
 
             <Image
@@ -103,14 +102,14 @@ const Detail = () => {
 
           <View style={styles.footer}>
             <RectButton style={styles.button} onPress={handleWhatsapp}>
-              {/* <FontAwesome name="whatsapp" size={20} color="#fff" /> */}
+              <FontAwesome name="whatsapp" size={20} color="#fff" />
               <Text style={styles.buttonText}>
                 Whatsapp
               </Text>
             </RectButton>
 
             <RectButton style={styles.button} onPress={handleComposeMail}>
-              {/* <Icon name="mail" size={20} color="#fff" /> */}
+              <Icon name="mail" size={20} color="#fff" />
               <Text style={styles.buttonText}>
                 E-mail
               </Text>

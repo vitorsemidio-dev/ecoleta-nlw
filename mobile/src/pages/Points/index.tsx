@@ -49,8 +49,6 @@ const Point = () => {
 
   const routeParams = route.params as Params;
 
-  console.log(routeParams);
-
   function handleNavigateBack() {
     navigation.goBack();
   }
@@ -105,7 +103,6 @@ const Point = () => {
       }
     }).then((response) => {
       setPoints(response.data);
-      console.log('loading')
     })
   }, [selectedItems]);
 
@@ -113,8 +110,7 @@ const Point = () => {
     <>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
-          {/* <Icon name="arrow-left" size={20} color="#34cb46" /> */}
-          <Text>back</Text>
+          <Icon name="arrow-left" size={20} color="#34cb46" />
         </TouchableOpacity>
 
         <Text style={styles.title}>
